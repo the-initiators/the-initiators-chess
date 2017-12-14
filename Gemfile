@@ -57,3 +57,5 @@ gem 'minitest-rails'
 group :test do
   gem 'minitest-rails-capybara'
 end
+
+gem 'rubocop', '~> 0.52.0', require: false
