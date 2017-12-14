@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211094631) do
+ActiveRecord::Schema.define(version: 20171214154157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.string   "game_name"
+    t.string   "state"
+    t.integer  "white_player_id"
+    t.integer  "black_player_id"
+    t.integer  "winning_player_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "user_turn"
+    t.time     "game_time_limit"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "pieces", force: :cascade do |t|
+    t.integer  "x_position"
+    t.integer  "y_position"
+    t.string   "symbol"
+    t.string   "color"
+    t.integer  "game_id"
+    t.integer  "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "type"
+    t.string   "state"
+    t.boolean  "captured"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,6 +56,8 @@ ActiveRecord::Schema.define(version: 20171211094631) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "user_name"
+    t.integer  "rating"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
