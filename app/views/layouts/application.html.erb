@@ -6,17 +6,36 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <link type="text/css" rel="stylesheet" href="master.scss" /> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>     
+    <script>
+    $(document).ready(function(){
+      var space = 1;
+      for (var r=0; r<8; r++) {
+        var col = "";
+        for (var c=0; c<8; c++) { col += "<td data-pos='"+space+"'></td>"; space++; }
+        $("#chessboard").append("<tr>"+col+"</tr>");
+      }  
+    });
+    </script>      
   </head>
 
   <body>
 
   	<% if notice.present? %>
 	  <p class="alert alert-info"><%= notice %></p>
-	<% end %>
-	<% if alert.present? %>
-	  <p class="alert alert-danger"><%= alert %></p>
-	<% end %>
+  	<% end %>
+  	<% if alert.present? %>
+  	  <p class="alert alert-danger"><%= alert %></p>
+  	<% end %>
+
+    <table id='chessboard'>
+    </table>
   	
     <%= yield %>
+
   </body>
 </html>
