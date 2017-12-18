@@ -1,5 +1,5 @@
 class Piece < ApplicationRecord
-  def is_obstructed  #Horizontal method
+  def is_obstructed?  #Horizontal method
     starting_point = self.x_position.y_position
     final_position = # ?????????????
     
