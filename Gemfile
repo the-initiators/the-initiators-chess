@@ -68,4 +68,6 @@ end
 gem 'devise'
 gem 'simple_form'
 gem 'omniauth-facebook'
+gem 'figaro'
+
 
