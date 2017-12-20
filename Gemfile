@@ -58,6 +58,8 @@ group :test do
   gem 'minitest-rails-capybara'
 end
 
+gem 'rubocop', '~> 0.52.0', require: false 
+
 gem 'popper_js', '~> 1.11.1'
 gem 'bootstrap', '4.0.0.alpha6'
 
@@ -67,4 +69,5 @@ end
 
 gem 'devise'
 gem 'simple_form'
+
 
