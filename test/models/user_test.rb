@@ -6,4 +6,6 @@ describe User do
   it "must be valid" do
     value(user_name).must_be :valid?
   end
+
+  
 end
