@@ -13,7 +13,7 @@
     <ul class="navbar-nav">
       <% if user_signed_in? %>
         <li class="nav-item">
-          Welcome <%= current_user.email %>
+          Welcome <%= current_user.user_name %>
         </li>
         <li class="nav-item">
           <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
