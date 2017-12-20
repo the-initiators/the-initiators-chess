@@ -1,13 +1,13 @@
 class Piece < ApplicationRecord
-  def is_obstructed?  #Horizontal method
+  def is_obstructed?  #Horizontal movement only
     self.each_with_index do |location, x|
       if location == current.x_position.y_position
         location = (x_position + 1).y_position
         while location = x_position.y_position.empty?
           location = (x_position + 1).y_position
-          return true
+          return false
         end
-        return false
+        return true
       end
     end
   end 
