@@ -1,17 +1,17 @@
 class Piece < ApplicationRecord
   def is_obstructed?  #Horizontal method
-    starting_point = self.x_position.y_position
-    final_position = # ?????????????
-    
-    while starting_point != final_position
-      if x_position.y_position.empty?
-        y_position = y_position + 1
-      else 
+    self.each_with_index do |location, x|
+      if location == current.x_position.y_position
+        location = (x_position + 1).y_position
+        while location = x_position.y_position.empty?
+          location = (x_position + 1).y_position
+          return true
+        end
         return false
       end
-      return true
     end
-    
+  end 
+  
   #  look to see if the spaces between the starting and ending points are open
   # define starting position (x_position and y_position of current.piece)
   # define ending position (x_position and y_position of where you want to go)
@@ -22,6 +22,6 @@ class Piece < ApplicationRecord
   # return true
   
   
-  end
+
 end
 
