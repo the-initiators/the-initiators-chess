@@ -1,5 +1,5 @@
 class Piece < ApplicationRecord
-    def is_obstructed?(new_x, new_y)  
+  def is_obstructed?(new_x, new_y)  
     horizontal_obstructed?(new_x)
     vertical_obstructed?(new_y)
     diagonal_obstructed?(new_x, new_y)
