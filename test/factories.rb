@@ -1,8 +1,3 @@
-class ActiveSupport::TestCase
-	include FactoryBot::Syntax::Methods
-
-
-
 FactoryBot.define do
 	factory :piece do
 	end
@@ -13,22 +8,17 @@ FactoryBot.define do
 	factory :king do 
 	end
 
-	factory :knight do 
+	factory :knight do
+		 
 	end
 
 	factory :pawn do 
-		x_position: 1,
-  		y_position: 2,
-  		color: "white"
 	end
 
 	factory :queen do 
 	end
 
 	factory :rook do
-		x_position: 1,
-  		y_position: 1,
-  		color: "white"
+		
 	end
-end
 end
