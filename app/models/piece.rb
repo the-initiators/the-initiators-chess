@@ -1,16 +1,18 @@
 class Piece < ApplicationRecord
-  def is_obstructed?  #Horizontal movement only
-    self.each_with_index do |location, x|
-      if location == current.x_position.y_position
-        location = (x_position + 1).y_position
-        while location = x_position.y_position.empty?
-          location = (x_position + 1).y_position
-          return false
-        end
-        return true
-      end
-    end
+  def is_obstructed?(new_x, new_y)  
+    horizontal_obstructed?(new_x)
+    vertical_obstructed?(new_y)
   end 
+  
+  def horizontal_obstructed?(new_x) #Horizontal movement only
+    Piece.where(x_position:(self.x_position + 1..new_x),
+                y_position:self.y_position).present?
+  end
+  
+  def vertical_obstructed?(new_y)  #Vertical movement only
+    Piece.where(y_position:(self.y_position + 1..new_y), 
+                x_position:self.x_position).present?
+  end
   
   #  look to see if the spaces between the starting and ending points are open
   # define starting position (x_position and y_position of current.piece)
