@@ -15,7 +15,7 @@ class Piece < ApplicationRecord
                 x_position:self.x_position).present?
   end
   
-  def diagonal_obstructed?(new_x, new_y)
+  def diagonal_obstructed?(new_x, new_y)  #Diagonal movement only
     Piece.where(y_position:(self.y_position + 1..new_y),
                 x_position:(self.x_position + 1..new_x)).present?
   end

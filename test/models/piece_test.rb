@@ -1,14 +1,14 @@
 require "test_helper"
 
-class PieceTest < Minitest::Test
-
-  def test_that_it_has_a_Piece
-    refute_nil ::ApplicationRecord::Piece
-  end 
-
-  def test_is_obstructed_method_works
-    piece = FactoryBot.create(:piece)
-    assert piece.is_obstructed?(3, 3).must_equal false
-  end 
+describe Piece do
+  let(:piece) {Piece.new(x_position: 3, y_position: 3) }
   
+  it "is valid" do
+    value(piece).must_be :valid?
+  end
+  
+  it "must not be an obstructed move" do
+    piece.is_obstructed?(3, 1)
+    assert false
+  end
 end
