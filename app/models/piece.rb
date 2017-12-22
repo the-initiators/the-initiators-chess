@@ -15,9 +15,31 @@ class Piece < ApplicationRecord
                 x_position:self.x_position).present?
   end
   
+<<<<<<< HEAD
   def diagonal_obstructed?(new_x, new_y)
     Piece.where(y_position:(self.y_position + 1..new_y),
                 x_position:(self.x_position + 1..new_x)).present?
+=======
+  def diagonal_obstructed?(new_x, new_y)  #Diagonal movement only
+    Piece.where(y_position:(self.y_position + 1..new_y),
+                x_position:(self.x_position + 1..new_x)).present?
+  end
+
+
+  def invalid_move?(new_x, new_y) #Invalid movement(movement not horizontal, vertical, or diagonal)
+
+    if x_position == new_x && y_position == new_y
+      return true
+    else
+      return false
+    end
+
+    if new_x > 8 || new_y > 8
+      return false
+    end
+    
+>>>>>>> am-is-obstructed-test
   end
 end
+
 
