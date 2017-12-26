@@ -31,7 +31,7 @@ class Piece < ApplicationRecord
     end
 
     if new_x > 8 || new_y > 8
-      return false
+      return true
     end
     
   end
