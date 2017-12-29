@@ -15,4 +15,10 @@ $(document).ready(function(){
 </script>     
 
 <table id='chessboard'>
+  <% piece = @game.pieces.where(x_position:c, y_position:r).first %>
+  <td>
+    <% if piece %>
+      <%= piece.image.html_safe %>
+    <% end %>
+  </td>
 </table>
