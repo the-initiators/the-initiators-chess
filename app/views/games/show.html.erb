@@ -1,14 +1,15 @@
 <h1>game show page, chess board below</h1>
 
-<link type="text/css" rel="stylesheet" href="master.scss" /> 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>     
+
 <script>
 $(document).ready(function(){
-  var space = 1;
+  var y_space = 9;
   for (var r=0; r<8; r++) {
+  	y_space--;
+		var x_space = 1;
     var col = "";
-    for (var c=0; c<8; c++) { col += "<td data-pos='"+space+"'></td>"; space++; }
+    for (var c=0; c<8; c++) { col += "<td data-y-pos='"+y_space+"' data-x-pos='"+x_space+"'></td>"; x_space++; }
     $("#chessboard").append("<tr>"+col+"</tr>");
   }  
 });
