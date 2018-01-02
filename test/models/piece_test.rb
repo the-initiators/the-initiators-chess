@@ -5,7 +5,7 @@ describe Piece do
                 symbol: "pawn", color: "black", game_id: "1", 
                 player_id: "1", created_at: "1/1/2016", 
                 updated_at: "1/1/2016", type: Piece, state: true, captured: false) }
-  let(:pieces) {Game.create_game}
+  # let(:pieces) {Game.create_game}
 
   it "must be valid" do
     value(piece).must_be :valid?
