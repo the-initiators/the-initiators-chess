@@ -9,6 +9,6 @@ describe Game do
   end
   
   it "must load the pieces to the board" do
-    value(pieces).must_be :valid?
+    value(pieces).must_equal 32
   end
 end

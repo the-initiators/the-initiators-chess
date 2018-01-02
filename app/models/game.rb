@@ -3,17 +3,16 @@ class Game < ApplicationRecord
   has_many :users
   
   def self.create_game
-  game = Game.create
-    8.times do |r|
-      8.times do |c|
-        if r == 2
-          Piece.create(x_position: c, y_position: r, game_id: game.id, color: "black")
+    game = Game.create
+    8.times do |row|
+      8.times do |column|
+        if row < 2 
+          Piece.create(x_position: column, y_position: row, game_id: game.id, color: "white")
         end
-        if r == 7
-          Piece.create(x_position: c, y_position: r, game_id: game.id, color: "white")
+        if row > 6
+          Piece.create(x_position: column, y_position: row, game_id: game.id, color: "black")
         end
       end
     end
-    game
   end
 end
