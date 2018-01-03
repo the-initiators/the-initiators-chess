@@ -5,11 +5,11 @@ class Game < ApplicationRecord
   def self.create_game
   game = Game.create
     8.times do |pawn|
-      Pawn.create(x_position: pawn, y_position: 2, color: "white", game_id: game)
+      Pawn.create(x_position: pawn+1, y_position: 2, color: "white", game_id: game.id)
     end
     
     8.times do |pawn|
-      Pawn.create(x_position: pawn, y_position: 7, color: "black", game_id: game)
+      Pawn.create(x_position: pawn+1, y_position: 7, color: "black", game_id: game.id)
     end
     
     Queen.create(x_position: 4, y_position: 1, game_id: game.id, color: "white")
@@ -33,6 +33,7 @@ class Game < ApplicationRecord
     Rook.create(x_position: 1, y_position: 8, game_id: game.id, color: "black")
     Rook.create(x_position: 8, y_position: 8, game_id: game.id, color: "black")
     
+    game
   end
   
 end

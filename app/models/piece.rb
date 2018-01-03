@@ -1,4 +1,4 @@
 class Piece < ApplicationRecord
-  belongs_to :game_params
+  belongs_to :game
   
 end

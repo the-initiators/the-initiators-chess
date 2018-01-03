@@ -9,6 +9,7 @@ describe Game do
   end
   
   it "must load the pieces to the board" do
-    value(pieces).must_equal 32
+    game = Game.create_game
+    assert_equal 32, Piece.where(game_id: game.id).length
   end
 end
