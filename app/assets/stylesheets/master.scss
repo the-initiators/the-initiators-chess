@@ -28,3 +28,15 @@ table {
 #chessboard tr:nth-child(2n+1) td:nth-child(2n) { 
   background: #9f9f9f; 
 } 
+
+.list {
+  text-align: left;
+  width: 80%;
+  background-color: gray;
+}
+
+.list-item {
+  border: 1px solid #ffffff;
+  text-align: center;
+  background-color: gray;
+}
