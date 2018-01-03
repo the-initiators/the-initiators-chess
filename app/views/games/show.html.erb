@@ -1,6 +1,6 @@
 <h1>game show page, chess board below</h1>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>     
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
 
 <script>
 $(document).ready(function(){
@@ -11,9 +11,25 @@ $(document).ready(function(){
     var col = "";
     for (var c=0; c<8; c++) { col += "<td data-y-pos='"+y_space+"' data-x-pos='"+x_space+"'></td>"; x_space++; }
     $("#chessboard").append("<tr>"+col+"</tr>");
-  }  
+  }
 });
-</script>     
+</script>
 
-<table id='chessboard'>
+<table id='chessboard' class="chessboard">
+</table>
+
+<br /><br />
+
+
+<table id="chessboard-2" class="chessboard">
+  <!-- 1, 8 = top left -->
+  <% (1..8).to_a.reverse.each do |i| %>
+    <tr>
+      <% (1..8).each do |j| %>
+        <td data-y-pos="" data-x-pos="<%= j %>">
+          <%# "(#{i}, #{j})" %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
