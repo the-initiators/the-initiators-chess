@@ -6,7 +6,7 @@ class GamesController < ApplicationController
 
 
     def create
-        @game = Game.create(game_params)
+        @game = Game.create_game
         redirect_to game_path(@game)
     end
 
