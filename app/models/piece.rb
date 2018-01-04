@@ -1,4 +1,6 @@
 class Piece < ApplicationRecord
+  belongs_to :game
+
   def is_obstructed?(new_x, new_y)  
     horizontal_obstructed?(new_x) || 
     vertical_obstructed?(new_y) ||
@@ -33,8 +35,8 @@ class Piece < ApplicationRecord
     if new_x > 8 || new_y > 8
       return true
     end
-    
   end
+
 end
 
 
