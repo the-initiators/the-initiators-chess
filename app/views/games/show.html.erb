@@ -27,7 +27,7 @@ $(document).ready(function(){
     <tr>
       <% (1..8).each do |j| %>
         <td data-y-pos="" data-x-pos="<%= j %>">
-          <%= link_to "Move this piece", edit_game_piece_path(:game_id) %>
+          <%= link_to "move your piece", game_piece_path(:game_id) %>
 
           <%# "(#{i}, #{j})" %>
         </td>
@@ -35,3 +35,5 @@ $(document).ready(function(){
     </tr>
   <% end %>
 </table>
+
+
