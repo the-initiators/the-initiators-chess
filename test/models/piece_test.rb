@@ -8,7 +8,6 @@ describe Piece do
   end
   
   it "must not be an obstructed move" do
-    piece.is_obstructed?(3, 1)
-    assert false
+    assert_equal false, piece.is_obstructed?(3, 1)
   end
 end
