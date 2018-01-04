@@ -13,3 +13,4 @@ describe Game do
     assert_equal 32, Piece.where(game_id: game.id).length
   end
 end
+
