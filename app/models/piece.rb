@@ -1,4 +1,5 @@
 class Piece < ApplicationRecord
+<<<<<<< HEAD
   def is_obstructed?(new_x, new_y)  
     horizontal_obstructed?(new_x)
     vertical_obstructed?(new_y)
@@ -35,6 +36,10 @@ class Piece < ApplicationRecord
     end
     
   end
+=======
+  belongs_to :game
+  
+>>>>>>> 6e022ef603fc20319a20cb0dd71cc798835a5634
 end
 
 
