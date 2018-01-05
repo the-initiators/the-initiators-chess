@@ -8,11 +8,7 @@ describe Piece do
                 updated_at: "1/1/2016", type: Piece, state: true, captured: false) }
   let(:pieces) {Game.create_game}
   
-  it "is valid" do
-    value(piece).must_be :valid?
-  end
-  
-  it "must not be an obstructed move" do
+   it "must not be an obstructed move" do
     assert_equal false, piece.is_obstructed?(3, 1)
   end 
 
