@@ -27,3 +27,4 @@ describe Piece do
   end
   
 end
+
