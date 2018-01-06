@@ -26,7 +26,7 @@ $(document).ready(function(){
   <% (1..8).to_a.reverse.each do |i| %>
     <tr>
       <% (1..8).each do |j| %>
-        <td data-y-pos="" data-x-pos="<%= j %>">
+        <td data-y-pos="<%= i %>" data-x-pos="<%= j %>">
           <%= link_to "move your piece", game_piece_path(:game_id) %>
 
           <%# "(#{i}, #{j})" %>
