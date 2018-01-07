@@ -1,14 +1,12 @@
 require "test_helper"
 
 describe Piece do
-
-  let(:piece) { Piece.new(id: 1, x_position: 1, y_position: 1, 
-                symbol: "pawn", color: "black", game_id: 1, 
-                player_id: 1, created_at: "1/1/2016", 
-                updated_at: "1/1/2016", type: Piece, state: true, captured: false) }
-  let(:pieces) {Game.create_game}
+  let(:game) {Game.create_game}
+  let(:piece)   { Piece.new(id: 1, game_id: 1, x_position: 1, y_position: 1, symbol: "pawn", color: "black", player_id: 1, created_at: "1/1/2016", updated_at: "1/1/2016", type: Piece, state: true, captured: false ) }
   
   it "is valid" do
+    binding.pry
+    game = Game.new
     value(piece).must_be :valid?
   end
   
@@ -27,4 +25,3 @@ describe Piece do
   end
   
 end
-
