@@ -5,7 +5,6 @@ class PiecesController < ApplicationController
 		@piece = Piece.find(params[:id])
 	end
 
-
 	def update
 		@piece = Piece.find(params[:id])
 		@piece.update_attributes(piece_params)

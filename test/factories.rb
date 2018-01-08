@@ -10,7 +10,6 @@ FactoryBot.define do
 	end
 
 	factory :knight do
-		 
 	end
 
 	factory :pawn do 
@@ -20,6 +19,6 @@ FactoryBot.define do
 	end
 
 	factory :rook do
-		
+		@rook = Rook.create(x_position: 3, y_position: 8)
 	end
 end
