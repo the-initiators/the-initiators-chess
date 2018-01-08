@@ -1,19 +1,7 @@
+
 <h1>game show page, chess board below</h1>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
-
-<script>
-$(document).ready(function(){
-  var y_space = 9;
-  for (var r=0; r<8; r++) {
-  	y_space--;
-		var x_space = 1;
-    var col = "";
-    for (var c=0; c<8; c++) { col += "<td data-y-pos='"+y_space+"' data-x-pos='"+x_space+"'></td>"; x_space++; }
-    $("#chessboard").append("<tr>"+col+"</tr>");
-  }
-});
-</script>
 
 <table id='chessboard' class="chessboard">
 </table>
@@ -27,13 +15,29 @@ $(document).ready(function(){
     <tr>
       <% (1..8).each do |j| %>
         <td data-y-pos="<%= i %>" data-x-pos="<%= j %>">
-          <%= link_to "move your piece", game_piece_path(:game_id) %>
-
           <%# "(#{i}, #{j})" %>
         </td>
       <% end %>
     </tr>
   <% end %>
 </table>
+
+
+<% @game.pieces.each do |piece| %>
+  <% if piece.captured === nil %>
+    <div id="temp1" data-y-pos="<%= piece.y_position %>" data-x-pos="<%= piece.x_position %>" data-type="<%= piece.type %>" data-color="<%= piece.color %>"></div>
+    <script>
+      var y_pos = $('#temp1').attr("data-y-pos");
+      var x_pos = $('#temp1').attr("data-x-pos");
+      var type = $('#temp1').attr("data-type");
+      var color = $('#temp1').attr("data-color");
+      if (color === "white") {
+        var color = "#ccccff"
+      };
+      $('#chessboard-2 tr td[data-y-pos=' + y_pos + '][data-x-pos=' + x_pos + ']').text(type).css("color", color);
+      $('#temp1').remove();
+    </script>
+  <% end %>
+<% end %>
 
 
