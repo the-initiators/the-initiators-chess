@@ -10,7 +10,7 @@ class Rook < Piece
 
   	if (self.x_position - move_to_x).abs > (8 - self.x_position).abs || 
   	   (self.y_position - move_to_y).abs > (8 - self.y_position).abs ||
-  	   ((self.x_position != x_position) && (self.y_position != y_position))
+  	   ((self.x_position != move_to_x) && (self.y_position != move_to_y))
   		return false
   	end
   	
