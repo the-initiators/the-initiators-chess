@@ -9,11 +9,12 @@ class Rook < Piece
   def rook_valid_move?(move_to_x, move_to_y)
 
   	if (self.x_position - move_to_x).abs > (8 - self.x_position).abs || 
-  	   (self.y_position - move_to_y).abs > (8 - self.y_position).abs
+  	   (self.y_position - move_to_y).abs > (8 - self.y_position).abs ||
+  	   ((self.x_position != x_position) && (self.y_position != y_position))
   		return false
   	end
   	
-  	if is_obstructed?(move_to_x, move_to_y, 1)
+  	if is_obstructed?(move_to_x, move_to_y)
   		return false
   	else
   		return true
@@ -21,7 +22,7 @@ class Rook < Piece
   end
 
 
-  def is_obstructed?(move_to_x, move_to_y, z)
+  def is_obstructed?(move_to_x, move_to_y)
   	@move_to = Rook.where(x_position: move_to_x, y_position: move_to_y).take
     
     if @move_to == nil
@@ -30,6 +31,7 @@ class Rook < Piece
   		return true
   	elsif @move_to.color != self.color
       puts "Capture"
+      return false
   	else
   		return false
     end

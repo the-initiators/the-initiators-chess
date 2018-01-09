@@ -5,12 +5,6 @@ describe Piece do
   let(:piece)   { Piece.new(id: 1, game_id: 1, x_position: 1, y_position: 1, symbol: "pawn", color: "black", player_id: 1, created_at: "1/1/2016", updated_at: "1/1/2016", type: Piece, state: true, captured: false ) }
   
 
-  # it "is valid" do
-  #   binding.pry
-  #   game = Game.new
-  #   value(piece).must_be :valid?
-  # end
-  
   it "must not be an obstructed move" do
     assert_equal false, piece.is_obstructed?(3, 1)
   end 

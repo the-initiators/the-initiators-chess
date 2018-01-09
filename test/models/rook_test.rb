@@ -36,8 +36,8 @@ describe Rook do
     assert_equal false, rook.rook_valid_move?(3, 9)
   end
   
-  # it "must not allow movement in two directions in the same turn" do
+  it "must not allow movement in two directions in the same turn" do
     
-  # end
+  end
   
 end
