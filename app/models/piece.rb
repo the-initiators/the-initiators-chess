@@ -1,4 +1,5 @@
 class Piece < ApplicationRecord
+  validates :game, presence: true
   belongs_to :game
 
   def is_obstructed?(new_x, new_y)  
