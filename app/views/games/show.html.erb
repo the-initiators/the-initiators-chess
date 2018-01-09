@@ -27,8 +27,6 @@ $(document).ready(function(){
     <tr>
       <% (1..8).each do |j| %>
         <td data-y-pos="<%= i %>" data-x-pos="<%= j %>">
-          <%= link_to "move your piece", game_piece_path(:game_id) %>
-
           <%# "(#{i}, #{j})" %>
         </td>
       <% end %>
@@ -36,4 +34,20 @@ $(document).ready(function(){
   <% end %>
 </table>
 
+
+<% @game.pieces.each do |piece| %>
+		<% if piece.captured === nil %>
+			<div id="temp1" data-y-pos="<%= piece.y_position %>" data-x-pos="<%= piece.x_position %>" data-type="<%= piece.type %>" data-color="<%= piece.color %>" data-game-id="<%= @game.id %>" data-piece-id="<%= piece.id %>"></div>
+			<script>
+				var y_pos = $('#temp1').attr("data-y-pos");
+				var x_pos = $('#temp1').attr("data-x-pos");
+				var game_id = $('#temp1').attr("data-game-id");
+				var piece_id = $('#temp1').attr("data-piece-id");
+				var type = $('#temp1').attr("data-type");
+				var color = $('#temp1').attr("data-color");
+				$('#chessboard-2 tr td[data-y-pos=' + y_pos + '][data-x-pos=' + x_pos + ']').append('<a href="/games/'+ game_id +'/pieces/'+ piece_id + '">' + type + '</a>');
+				$('#temp1').remove();
+			</script>
+		<% end %>
+	<% end %> 
 
