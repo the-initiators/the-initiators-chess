@@ -1,19 +1,7 @@
+
 <h1>game show page, chess board below</h1>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
-
-<script>
-$(document).ready(function(){
-  var y_space = 9;
-  for (var r=0; r<8; r++) {
-  	y_space--;
-		var x_space = 1;
-    var col = "";
-    for (var c=0; c<8; c++) { col += "<td data-y-pos='"+y_space+"' data-x-pos='"+x_space+"'></td>"; x_space++; }
-    $("#chessboard").append("<tr>"+col+"</tr>");
-  }
-});
-</script>
 
 <table id='chessboard' class="chessboard">
 </table>
@@ -27,13 +15,18 @@ $(document).ready(function(){
     <tr>
       <% (1..8).each do |j| %>
         <td data-y-pos="<%= i %>" data-x-pos="<%= j %>">
-          <%= link_to "move your piece", game_piece_path(:game_id) %>
+          <% piece = @game.pieces.find_by(x_position: j, y_position: i) %>
 
-          <%# "(#{i}, #{j})" %>
+          <% if piece.present? %>
+            <%= link_to piece&.name, game_piece_path(@game, piece) %>
+          <% end %>
+
         </td>
       <% end %>
     </tr>
   <% end %>
 </table>
+
+
 
 
