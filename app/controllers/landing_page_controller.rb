@@ -1,5 +1,7 @@
 class LandingPageController < ApplicationController
+  before_action :authenticate_user!
   def index
+    @open_games = open_games
   end
 
   def show
