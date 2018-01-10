@@ -15,7 +15,12 @@
     <tr>
       <% (1..8).each do |j| %>
         <td data-y-pos="<%= i %>" data-x-pos="<%= j %>">
-          <%# "(#{i}, #{j})" %>
+          <% piece = @game.pieces.find_by(x_position: j, y_position: i) %>
+
+          <% if piece.present? %>
+            <%= link_to piece&.name, game_piece_path(@game, piece) %>
+          <% end %>
+
         </td>
       <% end %>
     </tr>
@@ -23,21 +28,5 @@
 </table>
 
 
-<% @game.pieces.each do |piece| %>
-  <% if piece.captured === nil %>
-    <div id="temp1" data-y-pos="<%= piece.y_position %>" data-x-pos="<%= piece.x_position %>" data-type="<%= piece.type %>" data-color="<%= piece.color %>"></div>
-    <script>
-      var y_pos = $('#temp1').attr("data-y-pos");
-      var x_pos = $('#temp1').attr("data-x-pos");
-      var type = $('#temp1').attr("data-type");
-      var color = $('#temp1').attr("data-color");
-      if (color === "white") {
-        var color = "#ccccff"
-      };
-      $('#chessboard-2 tr td[data-y-pos=' + y_pos + '][data-x-pos=' + x_pos + ']').text(type).css("color", color);
-      $('#temp1').remove();
-    </script>
-  <% end %>
-<% end %>
 
 
