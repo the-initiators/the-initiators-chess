@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'support/factory_bot'
 
 describe Rook do
     
