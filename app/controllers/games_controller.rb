@@ -18,9 +18,7 @@ class GamesController < ApplicationController
         end
     end
 
-    def index
-        redirect_to root_path
-    end
+    
 
     def update
         if game.valid? && unique_users?
