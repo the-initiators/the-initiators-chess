@@ -21,7 +21,6 @@ describe Rook do
   end
 
   it 'must allow horizontal movements' do
-    Factory.create(:rook)
     assert_equal true, rook3.rook_valid_move?(1, 8)
   end
   
