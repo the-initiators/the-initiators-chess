@@ -6,8 +6,8 @@
 
 <section>
 
-<ul id="list">
-  <% @open_games.each do |game| %>
+<ul id='list'>
+  <% @open_games.to_a.each do |game| %>
   <li id='list-item'>
     <h5><%= link_to game_name, game_path(@game) %></h5>
 

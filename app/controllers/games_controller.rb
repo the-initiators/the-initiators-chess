@@ -11,12 +11,12 @@ class GamesController < ApplicationController
         redirect_to game_path(@game)
     end
 
-
     def show
         unless game.present?
             return redirect_to root_path
         end
     end
+    
 
     
 
