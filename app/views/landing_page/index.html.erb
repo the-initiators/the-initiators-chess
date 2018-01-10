@@ -10,7 +10,7 @@
   <ul class='list'>
     <% @open_games.to_a.each do |game| %>
     <li class='list-item'>
-      <h5><%= link_to game_name, game_path(@game) %></h5>
+      <h5><%= link_to :game_name, game_path(@game) %></h5>
 
       <p>
      

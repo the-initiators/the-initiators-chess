@@ -1,6 +1,5 @@
 class GamesController < ApplicationController
-    before_action :authenticate_users!
-    helper_method :game
+
 
     def new
         @game = Game.new
@@ -30,7 +29,7 @@ class GamesController < ApplicationController
 
         return redirect_to game_path game
     end
-    render :new, status: :unprocessable_entity
+
 end
 
 
