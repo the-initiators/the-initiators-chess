@@ -36,6 +36,6 @@ class Queen < Piece
       else
         return false
       end
-  end 
+  end
 end
 
