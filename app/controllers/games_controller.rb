@@ -12,20 +12,19 @@ class GamesController < ApplicationController
     end
 
     def show
-        unless game.present?
-            return redirect_to root_path
-        end
+        @game = Game.find(params[:id])
     end
     
 
     
 
     def update
-        if game.valid? && unique_users?
+        @game = Game.find(params[:id])
+        if game.valid? 
             game.update_attributes games_params
         end
 
-        return redirect_to game_path game
+        return redirect_to game_path(@game)
     end
 
 end
@@ -35,6 +34,11 @@ end
 
 private
 
+
+def current_game
+    @current_game  ||= Game.find(params[:id])
+end
+
 def game
     @game ||= Game.where(id: params[:id]).last
 end
@@ -42,4 +46,5 @@ end
 def game_params
     params.require(:game).permit(:game_name, :white_player_id, :black_player_id)
 end
+
 

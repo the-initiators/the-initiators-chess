@@ -2,26 +2,14 @@
 
 <%= link_to "Create a new game", new_game_path %>
 
+&nbsp;
+&nbsp;
+<div>
 
+<% if @game.present? %>
+<%= render partial: 'open_games' %>
+<% end %>
+</div>
 
-<section>
-
-<ul id='list'>
-  <% @open_games.to_a.each do |game| %>
-  <li id='list-item'>
-    <h5><%= link_to game_name, game_path(@game) %></h5>
-
-    <p>
-    <%= user_email_from_id(game.white_player_id) %>
-    vs.
-      <%= simple_form_for @game, :method => :put do |f| %>
-      <%= f.input :black_player_id, :as => :hidden, :input_html => { :value => current_user_id} %>
-      <%= f.submit 'Join Game' %>
-      <% end %>
-    </p>
-  </li>
-  <% end %>
-</ul>
-</section>
 
 

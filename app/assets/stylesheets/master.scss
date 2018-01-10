@@ -29,16 +29,21 @@ table {
   background: #9f9f9f; 
 } 
 
+div {
+  text-align: center;
+}
+
 .list {
   text-align: left;
-  width: 80%;
-  background-color: gray;
+  width: 60%;
+  background-color: #9f9f9f;
 }
 
 .list-item {
   border: 1px solid #000000;
   text-align: center;
-  background-color: gray;
+  background-color: #9f9f9f;
 }
+
 
 
