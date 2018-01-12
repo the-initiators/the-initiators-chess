@@ -17,4 +17,21 @@ class Bishop < Piece
 		end
 	end
 
+	def is_obstructed?(x_move, y_move)
+		@move_to = Bishop.where(x_position: x_move, y_position: y_move).take
+
+		if @move_to == nil
+			return false
+		end
+
+		if @move_to.color == self.color
+			return true
+		elsif @move_to.color != self.color
+			puts "Capture"
+			return false
+		else
+			return false
+		end
+	end
+
 end
