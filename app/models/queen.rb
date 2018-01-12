@@ -8,8 +8,8 @@ class Queen < Piece
     
   def queen_valid_move?(move_to_x, move_to_y)
 
-    if (self.x_position - move_to_x).abs > (8 - self.x_position).abs || 
-       (self.y_position - move_to_y).abs > (8 - self.y_position).abs ||
+    if (self.x_position - move_to_x).abs > 8 || 
+       (self.y_position - move_to_y).abs > 8 ||
        ((self.x_position - move_to_x).abs != (self.y_position - move_to_y).abs)
       return false
     end
