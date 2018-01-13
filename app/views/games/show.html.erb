@@ -3,22 +3,16 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
 
-<table id='chessboard' class="chessboard">
-</table>
-
-<br /><br />
-
 
 <table id="chessboard-2" class="chessboard">
   <!-- 1, 8 = top left -->
   <% (1..8).to_a.reverse.each do |i| %>
     <tr>
       <% (1..8).each do |j| %>
-        <td data-y-pos="<%= i %>" data-x-pos="<%= j %>">
+        <td class="squares" data-y-pos="<%= i %>" data-x-pos="<%= j %>">
           <% piece = @game.pieces.find_by(x_position: j, y_position: i) %>
-
           <% if piece.present? %>
-            <%= link_to piece&.name, game_piece_path(@game, piece) %>
+            <div class="pieces" piece_id="<%= piece.id %>"><%= piece.type %></div>
           <% end %>
 
         </td>
@@ -27,6 +21,41 @@
   <% end %>
 </table>
 
+<!-- NOT SURE WHY WE STILL NEED THESE LINKS -->
+<!-- WHEN WE HAVE THE JQUERY-UI GEM INSTALLED -->
+
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 
+<script>
+$( function() {
+  $( ".pieces" ).draggable();
+    $( ".squares" ).droppable({
+      drop: function( event, ui ) {
+       $( this ) 
+        .addClass( "ui-state-highlight" )
+        .find( "p" );
 
+        var id = $(ui.draggable).attr('piece_id');
+        var new_x_pos = $(this).attr('data-x-pos');
+        var new_y_pos = $(this).attr('data-y-pos');
+
+        console.log( id );
+        console.log( new_x_pos );
+        console.log( new_y_pos );
+
+        // $.ajax({
+        //   url: '',
+        //   type: 'GET',
+        //   data: {
+        //     'id' : id,
+        //     'box' : box
+        //   }
+        // });
+      }
+    });
+  } );
+
+</script>
