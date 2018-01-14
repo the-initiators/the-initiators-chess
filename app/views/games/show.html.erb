@@ -12,7 +12,7 @@
         <td class="squares" data-y-pos="<%= i %>" data-x-pos="<%= j %>">
           <% piece = @game.pieces.find_by(x_position: j, y_position: i) %>
           <% if piece.present? %>
-            <div class="pieces" piece_id="<%= piece.id %>"><%= piece.type %></div>
+            <div class="pieces" game_id="<%= @game.id %>" piece_id="<%= piece.id %>" piece_color="<%= piece.color %>"><%= piece.type %></div>
           <% end %>
 
         </td>
@@ -33,27 +33,38 @@
 $( function() {
   $( ".pieces" ).draggable();
     $( ".squares" ).droppable({
+      tolerance: 'pointer',
       drop: function( event, ui ) {
        $( this ) 
         .addClass( "ui-state-highlight" )
         .find( "p" );
 
+        var game_id = $(ui.draggable).attr('game_id');
         var id = $(ui.draggable).attr('piece_id');
-        var new_x_pos = $(this).attr('data-x-pos');
-        var new_y_pos = $(this).attr('data-y-pos');
+        var new_x_pos_string = $(this).attr('data-x-pos');
+        var new_x_pos = parseInt(new_x_pos_string);
+        var new_y_pos_string = $(this).attr('data-y-pos');
+        var new_y_pos = parseInt(new_y_pos_string);
+        var color = $(this).attr('piece_color');
+        var new_coordinate = {x_position: new_x_pos, y_position: new_y_pos};
 
         console.log( id );
         console.log( new_x_pos );
         console.log( new_y_pos );
-
-        // $.ajax({
-        //   url: '',
-        //   type: 'GET',
-        //   data: {
-        //     'id' : id,
-        //     'box' : box
-        //   }
-        // });
+        console.log( color );
+        console.log( game_id );
+        console.log(new_coordinate);
+        // $.post('/games/' + game_id + '/pieces/' + id, new_coordinate);
+        $.ajax({
+          url: '/games/' + game_id + '/pieces/' + id,
+          type: 'PUT',
+          dataType: 'json',
+          data: { "piece": {
+            "x_position": "new_x_pos",
+            "y_position": "new_y_pos"
+          }
+        }
+        });
       }
     });
   } );
