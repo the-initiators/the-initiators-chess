@@ -1,8 +1,9 @@
 require 'test_helper'
 
 describe Queen do
-  let (:queen) {Queen.create(x_position: 3, y_position: 3, color: "white")}
-  let (:queen2) {Queen.create(x_position: 2, y_position: 8, color: "black")}
+  let (:game) {Game.create_game}
+  let (:queen) {Queen.create(x_position: 3, y_position: 3, color: "white", game_id: game.id)}
+  let (:queen2) {Queen.create(x_position: 6, y_position: 4, color: "black", game_id: game.id)}
 
   it "must load both queen pieces when a game is created" do
     game = Game.create_game
@@ -18,7 +19,7 @@ describe Queen do
   end
   
   it 'must allow horizontal movements' do
-    assert_equal true, queen2.queen_valid_move?(3, 8)
+    assert_equal true, queen2.queen_valid_move?(3, 4)
   end
   
   it 'must not allow horizontal movements' do
@@ -57,6 +58,16 @@ describe Queen do
     assert_equal true, queen.queen_is_obstructed?(2, 2)
   end
   
+  it 'must allow for capture of piece of different color' do
+    assert_equal false, queen.queen_is_obstructed?(3, 6)
+  end
   
+  it 'must allow queen_is_valid? to return true' do
+    assert_equal true, queen.queen_valid_move?(5, 5)
+  end
+  
+  it 'must not allow queen_is_valid? to return true when move is obstructed' do
+    assert_equal false, queen.queen_valid_move?(2, 2)
+  end
 
 end

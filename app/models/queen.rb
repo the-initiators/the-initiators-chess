@@ -36,15 +36,13 @@ class Queen < Piece
 
 
   def queen_is_obstructed?(move_to_x, move_to_y)
-    @move_to = Queen.where(x_position: move_to_x, y_position: move_to_y).take
+    @move_to = Piece.where(x_position: move_to_x, y_position: move_to_y, game_id: self.game_id).take
       if @move_to == nil
         return false
       elsif @move_to.color == self.color
         return true
-      elsif @move_to.color != self.color
+      else #The piece captures the original piece on the square
         puts "Capture"
-        return false
-      else
         return false
       end
   end
