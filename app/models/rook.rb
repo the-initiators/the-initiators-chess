@@ -29,7 +29,6 @@ class Rook < Piece
   	elsif @move_to.color == self.color
   		return true
   	else #Piece is captured
-      puts "Capture"
       return false
     end
   end

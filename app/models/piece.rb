@@ -6,7 +6,6 @@ class Piece < ApplicationRecord
     vertical_obstructed?(new_y)
     diagonal_obstructed?(new_x, new_y)
     invalid_move?(new_x, new_y)
-    puts "TESTING"
   end 
   
   def horizontal_obstructed?(new_x) #Horizontal movement only
