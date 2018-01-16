@@ -17,4 +17,16 @@ describe Piece do
     assert_equal 32, Piece.where(game_id: game.id).count
   end
   
+  it 'must move piece to new location if empty' do
+    
+  end
+  
+  it 'must not move to a square with a piece of the same color' do
+    
+  end
+  
+  it 'must capture piece of opposite color when moving into new location' do
+    
+  end
+  
 end
