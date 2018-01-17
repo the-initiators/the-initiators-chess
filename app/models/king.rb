@@ -9,13 +9,12 @@ class King < Piece
 # CHECK IF OBSTRUCTED
 # OBSTRUCTED IF NEW POSITION HAVE PIECE OF SAME COLOR ON IT
 
-def valid_move? (move_to_x, move_to_y)
-
+def valid_move?(move_to_x, move_to_y)
   if (self.x_position - move_to_x).abs > 1 || (self.y_position - move_to_y).abs > 1
     return false
   end
 
-  if is_obstructed?(move_to_x, move_to_y)
+  if obstructed?(move_to_x, move_to_y)
     return false
   else
     return true
@@ -23,7 +22,7 @@ def valid_move? (move_to_x, move_to_y)
 
 end
 
-def is_obstructed? (move_to_x, move_to_y)
+def obstructed?(move_to_x, move_to_y)
 
   @move_to = King.where(x_position: move_to_x, y_position: move_to_y).take
 
@@ -34,7 +33,7 @@ def is_obstructed? (move_to_x, move_to_y)
   if @move_to.color == self.color
     return true
   elsif @move_to.color != self.color
-    puts "Capture"
+    puts 'Capture'
     return false
   else
     return false
