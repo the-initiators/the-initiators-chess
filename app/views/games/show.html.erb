@@ -21,8 +21,6 @@
   <% end %>
 </table>
 
-<!-- NOT SURE WHY WE STILL NEED THESE LINKS -->
-<!-- WHEN WE HAVE THE JQUERY-UI GEM INSTALLED -->
 
  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -60,8 +58,8 @@ $( function() {
           type: 'PUT',
           dataType: 'json',
           data: { "piece": {
-            "x_position": "new_x_pos",
-            "y_position": "new_y_pos"
+            "x_position": new_x_pos,
+            "y_position": new_y_pos
           }
         }
         });
