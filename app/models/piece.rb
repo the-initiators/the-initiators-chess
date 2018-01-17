@@ -43,16 +43,17 @@ class Piece < ApplicationRecord
   def move_to!(new_x, new_y)
     @move_to = Piece.where(x_position: new_x, y_position: new_y, game_id: self.game_id).take
       if @move_to == nil
-        Piece.update_attributes(:x_position, new_x, :y_position, new_y)
+        # Piece.update_attributes(:x_position, new_x, :y_position, new_y)
         # The piece can move to this square and update_attributes should be called
       elsif @move_to.color == self.color
-        # flash message: 'This move is not allowed'
-        flash[:error] = '<strong>This move is not allowed</strong>'
+          # flash message: 'This move is not allowed'
+        # flash[:error] = '<strong>This move is not allowed</strong> 
+        #                 Return to this pieces starting position and move it in a legal manner'
       else # Piece is captured
-        # We have a "captured" column that should be changed to true by 
+          # We have a "captured" column that should be changed to true by 
           # updating attributes and the piece should no longer be on the board
-        @move_to.update_attribute(:captured, true)
-        Piece.update_attributes(:x_position, new_x, :y_position, new_y)
+        # @move_to.update_attribute(:captured, true)
+        # Piece.update_attributes(:x_position, new_x, :y_position, new_y)
       end
   end
 
