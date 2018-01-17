@@ -24,7 +24,7 @@ end
 
 def obstructed?(move_to_x, move_to_y)
 
-  @move_to = King.where(x_position: move_to_x, y_position: move_to_y).take
+  @move_to = Piece.where(x_position: move_to_x, y_position: move_to_y).take
 
   if @move_to == nil
     return false
