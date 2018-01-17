@@ -4,7 +4,7 @@ class Bishop < Piece
 
 	def bishop_valid_move?(x_move, y_move)
 
-		if (x_position - x_move).abs == (y.position - y_move).abs
+		if (x_position - x_move).abs == (y_position - y_move).abs
 			return true
 		else
 			return false
