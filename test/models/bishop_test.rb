@@ -19,5 +19,16 @@ describe Bishop do
   it "must include black pieces" do
     value(bishop4.color).must_equal "black"
   end
-  
+
+  it "must not allow horizontal movements" do
+    assert_equal false, bishop.bishop_valid_move?(4, 1)
+  end
+
+  it "must not allow vertical movements" do
+    assert_equal false, bishop.bishop_valid_move?(3, 2)
+  end
+
+  it "must allow diagonal movements" do
+    assert_equal true, bishop2.bishop_valid_move?(4, 2)
+  end
 end
