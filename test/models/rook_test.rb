@@ -2,17 +2,17 @@ require 'test_helper'
 
 describe Rook do
 
-  let (:rook) {Rook.create(x_position: 3, y_position: 1, color: "white",
-              game_id: game.id)}
-  let (:rook2) {Rook.create(x_position: 6, y_position: 1, color: "white",
-              game_id: game.id)}
-  let (:rook3) {Rook.create(x_position: 3, y_position: 5, color: "black",
-              game_id: game.id)}
-  let (:rook4) {Rook.create(x_position: 6, y_position: 8, color: "black",
-              game_id: game.id)}
-  let (:game) {Game.create_game}
+  let (:rook) { Rook.create(x_position: 3, y_position: 1, color: 'white',
+              game_id: game.id) }
+  let (:rook2) { Rook.create(x_position: 6, y_position: 1, color: 'white',
+              game_id: game.id) }
+  let (:rook3) { Rook.create(x_position: 3, y_position: 5, color: 'black',
+              game_id: game.id) }
+  let (:rook4) { Rook.create(x_position: 6, y_position: 8, color: 'black',
+              game_id: game.id) }
+  let (:game) { Game.create_game }
 
-  it "must load all Rook pieces when a game is created" do
+  it 'must load all Rook pieces when a game is created' do
     assert_equal 4, Rook.where(game_id: game.id).length
   end
 
