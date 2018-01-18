@@ -3,9 +3,9 @@ class Piece < ApplicationRecord
   belongs_to :game
 
   def is_obstructed?(new_x, new_y)
-    horizontal_obstructed?(new_x)
-    vertical_obstructed?(new_y)
-    diagonal_obstructed?(new_x, new_y)
+    horizontal_obstructed?(new_x) ||
+    vertical_obstructed?(new_y) ||
+    diagonal_obstructed?(new_x, new_y) ||
     invalid_move?(new_x, new_y)
   end
 
@@ -27,12 +27,10 @@ class Piece < ApplicationRecord
   def invalid_move?(new_x, new_y) #Invalid movement (movement not horizontal, vertical, or diagonal)
     if x_position == new_x && y_position == new_y
       return true
+    elsif new_x < 1 || new_x > 8 || new_y < 1 || new_y > 8
+      return true
     else
       return false
-    end
-
-    if new_x > 8 || new_y > 8
-      return true
     end
   end
 
@@ -40,21 +38,46 @@ class Piece < ApplicationRecord
     self.class.to_s
   end
   
-  def move_to!(new_x, new_y)
-    @move_to = Piece.where(x_position: new_x, y_position: new_y, game_id: self.game_id).take
-      if @move_to == nil
-        # Piece.update_attributes(:x_position, new_x, :y_position, new_y)
-        # The piece can move to this square and update_attributes should be called
-      elsif @move_to.color == self.color
-          # flash message: 'This move is not allowed'
-        # flash[:error] = '<strong>This move is not allowed</strong> 
-        #                 Return to this pieces starting position and move it in a legal manner'
-      else # Piece is captured
-          # We have a "captured" column that should be changed to true by 
-          # updating attributes and the piece should no longer be on the board
-        # @move_to.update_attribute(:captured, true)
-        # Piece.update_attributes(:x_position, new_x, :y_position, new_y)
-      end
-  end
+# This method is important and eventually, we will use it in the controller to handle moving pieces.
 
+# This move_to method should handle the following cases:
+
+# - Check to see if there is a piece in the location it’s moving to.
+# - If there is a piece occupying the location, and it is the opposite color, remove the piece from the chess board. This can be done a few different ways.
+#   - You could have a “status” flag on the piece that will be one of “onboard” or “captured”.
+#   - You could set the piece’s x/y coordinates to nil
+#   - You could delete the item from the database.
+#   - Each solution has pros/cons.
+# - If the piece is there and it’s the same color the move should fail - it should 
+# either raise an error message or do nothing.
+# - It should call update_attributes on the piece and change the piece’s x/y position.
+  def move_to!(new_x, new_y)
+    if !is_obstructed?
+      if !landing_square_obstructed?
+        # update piece attributes to new_x and new_y positions
+      elsif landing_square_obstructed? && Piece.present.color == self.color
+        # Invalid move
+      else
+        # Capture piece present
+        # set boolean to true and remove peice from board by either setting attributes to nil or deleting peice
+      end
+    else 
+      # Invalid move
+    end  
+  end
+  
+  def landing_square_obstructed?(new_x, new_y)
+    @move_to = Piece.where(x_position: new_x, y_position: new_y, 
+                          game_id: self.game_id).take
+    if @move_to == nil
+      return false
+    elsif @move_to.color == self.color
+      return true
+    elsif @move_to.color != self.color
+      puts 'Capture'
+      return false
+    else
+      return false
+    end
+  end
 end

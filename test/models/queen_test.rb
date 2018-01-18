@@ -43,24 +43,16 @@ describe Queen do
     assert_equal true, queen.queen_valid_move?(5, 5)
   end
   
-  it 'must not allow a piece to move off the board vertically' do
-    assert_equal false, queen.queen_valid_move?(3, 9)
-  end
-  
-  it 'must not allow a piece to move off the board horizontally' do
-    assert_equal false, queen.queen_valid_move?(0, 5)
-  end
-  
   it 'must allow a piece to land on an empty position' do
-    assert_equal false, queen.queen_is_obstructed?(5, 5)
+    assert_equal false, queen.landing_square_obstructed?(5, 5)
   end
   
   it 'must not allow queen to move to square with piece of same color' do
-    assert_equal true, queen.queen_is_obstructed?(2, 2)
+    assert_equal true, queen.landing_square_obstructed?(2, 2)
   end
   
   it 'must allow for capture of piece of different color' do
-    assert_equal false, queen.queen_is_obstructed?(3, 6)
+    assert_equal false, queen.landing_square_obstructed?(3, 6)
   end
   
   it 'must allow queen_is_valid? to return true' do

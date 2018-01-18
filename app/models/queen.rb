@@ -8,14 +8,7 @@ class Queen < Piece
 # The queen captures by occupying the square on which an enemy piece sits.    
     
   def queen_valid_move?(move_to_x, move_to_y)
-    # Making sure that the piece being moved will stay on the board
-    if move_to_x < 1 || move_to_x > 8
-      return false
-    elsif move_to_y < 1 || move_to_y > 8
-      return false
-    end
-      
-    #diagonal
+    #diagonal movement
     if ((self.x_position - move_to_x).abs == (self.y_position - move_to_y).abs)
     #horizontal movement
     elsif ((self.x_position != move_to_x) && (self.y_position == move_to_y))
@@ -25,7 +18,7 @@ class Queen < Piece
       return false
     end
     
-    if queen_is_obstructed?(move_to_x, move_to_y)
+    if landing_square_obstructed?(move_to_x, move_to_y)
       return false
     else
       return true
@@ -35,16 +28,16 @@ class Queen < Piece
   end
 
 
-  def queen_is_obstructed?(move_to_x, move_to_y)
-    @move_to = Piece.where(x_position: move_to_x, y_position: move_to_y, game_id: self.game_id).take
-      if @move_to == nil
-        return false
-      elsif @move_to.color == self.color
-        return true
-      else #The piece captures the original piece on the square
-        puts "Capture"
-        return false
-      end
-  end
+  # def obstructed?(move_to_x, move_to_y)
+  #   @move_to = Piece.where(x_position: move_to_x, y_position: move_to_y, game_id: self.game_id).take
+  #     if @move_to == nil
+  #       return false
+  #     elsif @move_to.color == self.color
+  #       return true
+  #     else #The piece captures the original piece on the square
+  #       puts "Capture"
+  #       return false
+  #     end
+  # end
 end
 

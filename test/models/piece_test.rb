@@ -17,6 +17,14 @@ describe Piece do
     assert_equal 32, Piece.where(game_id: game.id).count
   end
   
+  it 'must not allow a piece to move off the board vertically' do
+    assert_equal true, piece.invalid_move?(3, 9)
+  end
+  
+  it 'must not allow a piece to move off the board horizontally' do
+    assert_equal true, piece.invalid_move?(0, 5)
+  end
+  
   it 'must move piece to new location if empty' do
     
   end
