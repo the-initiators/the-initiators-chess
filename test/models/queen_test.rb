@@ -1,21 +1,22 @@
 require 'test_helper'
 
 describe Queen do
-  let (:game) {Game.create_game}
-  let (:queen) {Queen.create(x_position: 3, y_position: 3, color: "white", game_id: game.id)}
-  let (:queen2) {Queen.create(x_position: 6, y_position: 4, color: "black", game_id: game.id)}
+  let (:game) { Game.create_game }
+  let (:queen) { Queen.create(x_position: 3, y_position: 3, color: 'white', 
+                game_id: game.id) }
+  let (:queen2) { Queen.create(x_position: 6, y_position: 4, color: 'black', 
+                game_id: game.id) }
 
-  it "must load both queen pieces when a game is created" do
-    game = Game.create_game
+  it 'must load both queen pieces when a game is created' do
     assert_equal 2, Queen.where(game_id: game.id).length
   end
   
-  it "must include white pieces" do
-    value(queen.color).must_equal "white"
+  it 'must include white pieces' do
+    value(queen.color).must_equal 'white'
   end
   
-  it "must include black pieces" do
-    value(queen2.color).must_equal "black"
+  it 'must include black pieces' do
+    value(queen2.color).must_equal 'black'
   end
   
   it 'must allow horizontal movements' do
@@ -34,7 +35,7 @@ describe Queen do
     assert_equal false, queen2.queen_valid_move?(2, 9)
   end
   
-  it 'must not allow non-diagonal movement in the x and y directions in the same turn' do
+  it 'must not allow non-diagonal movement in both directions in one turn' do
     assert_equal false, queen2.queen_valid_move?(3, 5)
   end
   
