@@ -47,4 +47,3 @@ class Queen < Piece
       end
   end
 end
-
