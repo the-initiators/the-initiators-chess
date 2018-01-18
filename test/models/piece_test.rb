@@ -2,7 +2,10 @@ require "test_helper"
 
 describe Piece do
   let(:game) {Game.create_game}
-  let(:piece) { Piece.create(id: 1, game_id: 1, x_position: 1, y_position: 1, symbol: "pawn", color: "black", player_id: 1, created_at: "1/1/2016", updated_at: "1/1/2016", type: Piece, state: true, captured: false ) }
+  let(:piece) { Piece.create(id: 1, game_id: 1, x_position: 1, y_position: 2, 
+                symbol: "pawn", color: "black", player_id: 1, created_at: 
+                "1/1/2016", updated_at: "1/1/2016", type: Piece, state: true, 
+                captured: false ) }
   
 
   it "must not be an obstructed move" do
@@ -23,6 +26,18 @@ describe Piece do
   
   it 'must not allow a piece to move off the board horizontally' do
     assert_equal true, piece.invalid_move?(0, 5)
+  end
+  
+  it 'must allow a piece to land on an empty position' do
+    assert_equal true, piece.landing_square_available?(1, 4)
+  end
+  
+  it 'must not allow piece to move to square with piece of same color' do
+    assert_equal true, piece.landing_square_available?(2, 2)
+  end
+  
+  it 'must allow for capture of piece of different color' do
+    assert_equal true, piece.landing_square_available?(1, 6)
   end
   
   it 'must move piece to new location if empty' do

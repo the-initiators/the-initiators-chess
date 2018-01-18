@@ -15,26 +15,5 @@ class Knight < Piece
     else
       return false
     end
-  
-    if landing_square_obstructed?(move_to_x, move_to_y)
-      return false
-      end
-    end
-  
-  # def obstructed?(move_to_x, move_to_y)
-  #   @move_to = Piece.where(x_position: move_to_x, y_position: move_to_y).take
-  
-  #   if @move_to == nil
-  #     return false
-  #   end
-  
-  #   if @move_to.color == self.color
-  #     return true
-  #   elsif @move_to.color != self.color
-  #     puts 'Capture'
-  #     return false
-  #   else
-  #     return false
-  #   end
-  # end
+  end
 end

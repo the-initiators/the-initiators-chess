@@ -66,16 +66,15 @@ class Piece < ApplicationRecord
     end  
   end
   
-  def landing_square_obstructed?(new_x, new_y)
+  def landing_square_available?(new_x, new_y)
     @move_to = Piece.where(x_position: new_x, y_position: new_y, 
                           game_id: self.game_id).take
     if @move_to == nil
-      return false
-    elsif @move_to.color == self.color
       return true
+    elsif @move_to.color == self.color
+      return false
     elsif @move_to.color != self.color
       puts 'Capture'
-      return false
     else
       return false
     end
