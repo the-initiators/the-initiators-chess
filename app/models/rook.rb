@@ -7,10 +7,20 @@ class Rook < Piece
   # Rooks cannot move diagonally or move in more than one direction in the same turn
   
   def rook_valid_move?(move_to_x, move_to_y)
+    
+    # Making sure that the piece being moved will stay on the board
+    if move_to_x < 1 || move_to_x > 8
+      return false
+    elsif move_to_y < 1 || move_to_y > 8
+      return false
+    end
 
-    if (self.x_position - move_to_x).abs > (8 - self.x_position).abs || 
-       (self.y_position - move_to_y).abs > (8 - self.y_position).abs ||
-       ((self.x_position != move_to_x) && (self.y_position != move_to_y))
+    #horizontal movement
+    if ((self.x_position != move_to_x) && (self.y_position == move_to_y))
+    #vertical movement
+    elsif ((self.y_position != move_to_y) && (self.x_position == move_to_x))
+    #diagonal movement not allowed
+    elsif ((self.x_position != move_to_x) && (self.y_position != move_to_y))
       return false
     end
     
