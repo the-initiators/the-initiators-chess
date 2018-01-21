@@ -16,4 +16,20 @@ describe Pawn do
   it "must include black pieces" do
     assert_equal "black", pawn2.color
   end
+
+  it "must not allow horizontal movements" do
+    assert_equal false, pawn.pawn_valid_move?(2, 2)
+  end
+
+  it "must allow vertical movement one space" do
+    assert_equal true, pawn.pawn_valid_move?(1, 3) 
+  end
+
+  it "must not allow backwards movements" do
+    assert_equal false, pawn2.pawn_valid_move?(1, 8) 
+  end
+
+  it "must allow 2 space movement on first turn" do 
+  end
+
 end
