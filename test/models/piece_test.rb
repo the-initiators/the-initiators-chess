@@ -2,15 +2,15 @@ require "test_helper"
 
 describe Piece do
   let(:game) {Game.create_game}
+
   let(:piece) { Piece.create(id: 1, game_id: 1, x_position: 1, y_position: 2, 
                 symbol: "pawn", color: "black", player_id: 1, created_at: 
                 "1/1/2016", updated_at: "1/1/2016", type: Piece, state: true, 
                 captured: false ) }
   
-
   it "must not be an obstructed move" do
     assert_equal false, piece.is_obstructed?(3, 1)
-  end 
+  end
 
   it "must be a valid piece" do
     value(game).must_be :valid?

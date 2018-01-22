@@ -64,3 +64,4 @@ describe Queen do
   end
 
 end
+
