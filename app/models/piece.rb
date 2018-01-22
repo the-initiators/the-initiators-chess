@@ -10,24 +10,24 @@ class Piece < ApplicationRecord
   end
 
   def horizontal_obstructed?(new_x) #Horizontal movement only
-    Piece.where(x_position:(self.x_position - 1..new_x),
-                y_position:self.y_position).present? && 
+    Piece.where(x_position:(self.x_position - 1...new_x),
+                y_position:self.y_position, game_id: self.game_id).present? && 
     Piece.where(x_position:(self.x_position + 1..new_x),
-                y_position:self.y_position).present?
+                y_position:self.y_position, game_id: self.game_id).present?
   end
 
   def vertical_obstructed?(new_y)  #Vertical movement only
-    Piece.where(y_position:(self.y_position - 1..new_y), 
-                x_position:self.x_position).present? &&
-    Piece.where(y_position:(self.y_position + 1..new_y),
-                x_position:self.x_position).present?
+    Piece.where(y_position:(self.y_position - 1...new_y), 
+                x_position:self.x_position, game_id: self.game_id).present? &&
+    Piece.where(y_position:(self.y_position + 1...new_y),
+                x_position:self.x_position, game_id: self.game_id).present?
   end
 
   def diagonal_obstructed?(new_x, new_y)  #Diagonal movement only
-    Piece.where(y_position:(self.y_position - 1..new_y),
-                x_position:(self.x_position - 1..new_x)).present? &&
-    Piece.where(y_position:(self.y_position + 1..new_y),
-                x_position:(self.x_position + 1..new_x)).present?
+    Piece.where(y_position:(self.y_position - 1...new_y),
+                x_position:(self.x_position - 1...new_x), game_id: self.game_id).present? &&
+    Piece.where(y_position:(self.y_position + 1...new_y),
+                x_position:(self.x_position + 1...new_x), game_id: self.game_id).present?
   end
 
   def invalid_move?(new_x, new_y) #Invalid movement (movement not horizontal, vertical, or diagonal)
@@ -58,16 +58,23 @@ class Piece < ApplicationRecord
 # either raise an error message or do nothing.
 # - It should call update_attributes on the piece and change the piece’s x/y position.
   def move_to!(new_x, new_y)
-    if !is_obstructed?
-      if !landing_square_obstructed?
+    puts "line 61"
+    if !is_obstructed?(new_x, new_y)
+      puts "line 63"
+      if landing_square_available?(new_x, new_y)
+        self.update_attributes(x_position: new_x, y_position: new_y)
         # update piece attributes to new_x and new_y positions
-      elsif landing_square_obstructed? && Piece.present.color == self.color
+      elsif !landing_square_available?(new_x, new_y) && Piece.where(x_position: new_x, y_posiyion: new_y, game_id: self.game_id).first.color == self.color
+        puts "YES"
         # Invalid move
       else
+        self.Piece.where(x_position: new_x, y_position: new_y, game_id: self.game_id).first.update_attributes(x_position: nil, y_position: nil)
+        self.update_attributes(x_position: new_x, y_position: new_y)
         # Capture piece present
         # set boolean to true and remove peice from board by either setting attributes to nil or deleting peice
       end
     else 
+      puts "line 8"
       # Invalid move
     end  
   end
