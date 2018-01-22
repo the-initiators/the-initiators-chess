@@ -9,8 +9,10 @@ class Rook < Piece
   def rook_valid_move?(move_to_x, move_to_y)
     #horizontal movement
     if ((self.x_position != move_to_x) && (self.y_position == move_to_y))
+      return true
     #vertical movement
     elsif ((self.y_position != move_to_y) && (self.x_position == move_to_x))
+    return true
     #diagonal movement not allowed
     elsif ((self.x_position != move_to_x) && (self.y_position != move_to_y))
       return false

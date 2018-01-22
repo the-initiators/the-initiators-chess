@@ -58,24 +58,19 @@ class Piece < ApplicationRecord
 # either raise an error message or do nothing.
 # - It should call update_attributes on the piece and change the piece’s x/y position.
   def move_to!(new_x, new_y)
-    puts "line 61"
     if !is_obstructed?(new_x, new_y)
-      puts "line 63"
       if landing_square_available?(new_x, new_y)
-        self.update_attributes(x_position: new_x, y_position: new_y)
         # update piece attributes to new_x and new_y positions
-      elsif !landing_square_available?(new_x, new_y) && Piece.where(x_position: new_x, y_posiyion: new_y, game_id: self.game_id).first.color == self.color
-        puts "YES"
+        self.update_attributes(x_position: new_x, y_position: new_y)
+      elsif !landing_square_available?(new_x, new_y) && Piece.where(x_position: new_x, y_position: new_y, game_id: self.game_id).first.color == self.color
         # Invalid move
       else
-        self.Piece.where(x_position: new_x, y_position: new_y, game_id: self.game_id).first.update_attributes(x_position: nil, y_position: nil)
-        self.update_attributes(x_position: new_x, y_position: new_y)
-        # Capture piece present
-        # set boolean to true and remove peice from board by either setting attributes to nil or deleting peice
+        Piece.where(x_position: new_x, y_position: new_y, game_id: self.game_id).first.update_attributes(x_position: nil, y_position: nil)
+        self.update_attributes(x_position: new_x, y_position: new_y, captured: true)
+        # Captures piece present
       end
     else 
-      puts "line 8"
-      # Invalid move
+      # Invalid move due to obstructed path
     end  
   end
   
@@ -87,7 +82,8 @@ class Piece < ApplicationRecord
     elsif @move_to.color == self.color
       return false
     elsif @move_to.color != self.color
-      puts 'Capture'
+    # Landing square is not available because the piece currently present must be captured to move here!
+      return false
     else
       return false
     end
