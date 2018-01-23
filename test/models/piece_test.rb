@@ -26,23 +26,19 @@ describe Piece do
   end
   
   it 'must not allow a piece to move off the board vertically' do
-    assert_equal true, @pawn1.invalid_move?(3, 9)
+    assert_equal true, @pawn1.is_obstructed?(3, 9)
   end
   
   it 'must not allow a piece to move off the board horizontally' do
-    assert_equal true, @pawn1.invalid_move?(0, 5)
+    assert_equal true, @pawn1.is_obstructed?(0, 5)
   end
   
   it 'must allow a piece to land on an empty position' do
-    assert_equal true, @pawn1.landing_square_available?(1, 4)
-  end
-  
-  it 'must not allow piece to move to square with piece of same color' do
-    assert_equal false, @pawn1.landing_square_available?(2, 2)
+    assert_equal true, @pawn1.move_to!(1, 4)
   end
   
   it 'must allow for capture of piece of different color' do
-    assert_equal true, @pawn1.landing_square_available?(1, 6)
+    assert_equal true, @pawn1.move_to!(1, 6)
   end
   
   it 'must move piece to new location if empty' do
