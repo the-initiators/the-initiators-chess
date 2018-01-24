@@ -9,6 +9,20 @@
 <div>
 <h4><%= game.game_name %></h4>
 
+
+
+<% if [game.black_player_id, game.white_player_id].include?(current_user.id) %>
+  <%= link_to "Continue Playing Game", game_path(game) %>
+<% else %>
+  <% simple_form_for game do |f| %>
+    <%= f.input :black_player_id, as: :hidden, input_html: { value: current_user.id } %>
+
+    <%= f.submit "Join" %>
+  <% end %>
+<% end %>
+
+
+
 <% if user_signed_in? %>
 <%= link_to 'Join Game', game_path(game) %>
 <% else %>
