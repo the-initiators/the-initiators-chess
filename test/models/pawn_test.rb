@@ -26,8 +26,12 @@ describe Pawn do
     assert_equal true, pawn.pawn_valid_move?(1, 3) 
   end
 
-  it "must not allow backwards movements" do
+  it "must not allow backwards movements for black" do
     assert_equal false, pawn2.pawn_valid_move?(1, 8) 
+  end
+
+  it "must not allow backwards movements for white" do 
+    assert_equal false, pawn.pawn_valid_move?(1, 1)
   end
 
   it "must allow 2 space movement on first turn" do
