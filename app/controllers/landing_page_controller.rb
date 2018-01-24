@@ -1,6 +1,5 @@
 class LandingPageController < ApplicationController
 
-
   def index
     @game = Game.all
   end
@@ -14,5 +13,4 @@ class LandingPageController < ApplicationController
       @open_games = Game.where(black_player_id: nil).where.not(white_player_id: current_user.id).first(5)
     end
   end
-
 end
