@@ -1,5 +1,6 @@
 <h1>New Game</h1>
 <%= simple_form_for @game do |f| %>
+<%= f.input :white_player_id, as: :hidden %>
 	<%= f.input :game_name %>
 	<%= f.submit 'Create' %>
 <% end %>
