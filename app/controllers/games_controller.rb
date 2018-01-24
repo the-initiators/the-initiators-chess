@@ -1,8 +1,8 @@
 class GamesController < ApplicationController
 
-    def new
-        @game = Game.new
-    end
+  def new
+    @game = Game.new
+  end
 
     def create
         @game = Game.create(game_params)
@@ -38,4 +38,20 @@ end
 
 def unique_players?
     @game.white_player_id != game_params[:black_player_id].to_i
+end
+
+  def create
+    @game = Game.create_game
+    redirect_to game_path(@game)
+  end
+
+  def show
+    @game = Game.includes(:pieces).find(params[:id])
+  end
+
+  private
+
+  def game_params
+    params.require(:game).permit(:game_name, :white_player_id, :black_player_id)
+  end
 end
