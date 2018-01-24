@@ -3,10 +3,10 @@ class Piece < ApplicationRecord
   belongs_to :game
 
   def is_obstructed?(new_x, new_y)
-    horizontal_obstructed?(new_x) ||
-    vertical_obstructed?(new_y) ||
-    diagonal_obstructed?(new_x, new_y) ||
-    invalid_move?(new_x, new_y)
+    horizontal_obstructed?(new_x.to_i) ||
+    vertical_obstructed?(new_y.to_i) ||
+    diagonal_obstructed?(new_x.to_i, new_y.to_i) ||
+    invalid_move?(new_x.to_i, new_y.to_i)
   end
   
   # This method is important and eventually, we will use it in the controller to handle moving pieces.
@@ -42,7 +42,7 @@ class Piece < ApplicationRecord
   private
   
   def horizontal_obstructed?(new_x) #Horizontal movement only
-    Piece.where(x_position:(self.x_position - 1...new_x),
+    Piece.where(x_position:(self.x_position - 1..new_x),
                 y_position:self.y_position, game_id: self.game_id).present? && 
     Piece.where(x_position:(self.x_position + 1..new_x),
                 y_position:self.y_position, game_id: self.game_id).present?

@@ -29,42 +29,59 @@
 
 <script>
 $( function() {
-  $( ".pieces" ).draggable();
-    $( ".squares" ).droppable({
-      tolerance: 'pointer',
-      drop: function( event, ui ) {
-       $( this ) 
-        .addClass( "ui-state-highlight" )
-        .find( "p" );
+  // startPosition = {}
+  $( ".pieces" ).draggable({
+    start: function(){
+      $("#draggable").draggable({ revert: 'invalid' });
+      // $(this).data("origPosition",$(this).position());
+    }
+  });
+  
+  $( ".squares" ).droppable({
+    tolerance: 'pointer',
+    drop: function( event, ui ) {
+     $( this ) 
+      .addClass( "ui-state-highlight" )
+      .find( "p" );
 
-        var game_id = $(ui.draggable).attr('game_id');
-        var id = $(ui.draggable).attr('piece_id');
-        var new_x_pos_string = $(this).attr('data-x-pos');
-        var new_x_pos = parseInt(new_x_pos_string);
-        var new_y_pos_string = $(this).attr('data-y-pos');
-        var new_y_pos = parseInt(new_y_pos_string);
-        var color = $(this).attr('piece_color');
-        var new_coordinate = {x_position: new_x_pos, y_position: new_y_pos};
+      var game_id = $(ui.draggable).attr('game_id');
+      var id = $(ui.draggable).attr('piece_id');
+      var new_x_pos_string = $(this).attr('data-x-pos');
+      var new_x_pos = parseInt(new_x_pos_string);
+      var new_y_pos_string = $(this).attr('data-y-pos');
+      var new_y_pos = parseInt(new_y_pos_string);
+      var color = $(this).attr('piece_color');
+      var new_coordinate = {x_position: new_x_pos, y_position: new_y_pos};
+     
 
-        console.log( id );
-        console.log( new_x_pos );
-        console.log( new_y_pos );
-        console.log( color );
-        console.log( game_id );
-        console.log(new_coordinate);
-        // $.post('/games/' + game_id + '/pieces/' + id, new_coordinate);
-        $.ajax({
-          url: '/games/' + game_id + '/pieces/' + id,
-          type: 'PUT',
-          dataType: 'json',
-          data: { "piece": {
+      // console.log( id );
+      // console.log( new_x_pos );
+      // console.log( new_y_pos );
+      // console.log( color );
+      // console.log( game_id );
+      // console.log(new_coordinate);
+      // $.post('/games/' + game_id + '/pieces/' + id, new_coordinate);
+      request = $.ajax({
+        url: '/games/' + game_id + '/pieces/' + id,
+        type: 'PUT',
+        dataType: 'json',
+        data: { 
+          "piece": {
             "x_position": new_x_pos,
             "y_position": new_y_pos
-          }
+          },
         }
-        });
-      }
-    });
-  } );
+      });
+      request.done(function(data){
+        console.log(data);
+      })
+      request.fail(function(data){
+        console.log("FAIL");
+        ui.draggable.animate(ui.draggable.data().origPosition,"slow");
+        
+      })
+    }
+  });
+} );
 
 </script>
