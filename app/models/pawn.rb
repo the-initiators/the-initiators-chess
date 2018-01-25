@@ -24,7 +24,11 @@ class Pawn < Piece
     end
   
   # Need to add capture_move() method
-  
+    if capture_move(x_move, y_move)
+      return true
+    else
+      return false
+    end
   end
   
   private
