@@ -37,8 +37,4 @@ describe Pawn do
   it "must allow 2 space movement on first turn" do
     assert_equal true, pawn.pawn_valid_move?(1, 4)
   end
-
-  it "must not be able to move vertical if obstructed" do
-    assert_equal false, pawn.pawn_valid_move?(1, 3)
-  end
 end

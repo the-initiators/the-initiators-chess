@@ -23,10 +23,7 @@ class Pawn < Piece
 		
 	end
 
-
 	private
-
-	
 
 	def horizontal_move?(x_move)
 		distance = (self.x_position - x_move).abs
