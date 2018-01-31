@@ -1,4 +1,5 @@
 FactoryBot.define do
+  
   factory :piece do
     @piece = Piece.create(x_position:1, y_position: 1)
   end

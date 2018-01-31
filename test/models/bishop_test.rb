@@ -29,6 +29,6 @@ describe Bishop do
   end
 
   it 'must allow diagonal movements' do
-    assert_equal true, bishop.bishop_valid_move?(4, 2)
+    assert_equal true, bishop4.bishop_valid_move?(3, 5)
   end
 end

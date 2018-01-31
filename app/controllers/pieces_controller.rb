@@ -8,7 +8,7 @@ skip_before_action :verify_authenticity_token
 	def update
 		@piece = Piece.find(params[:id])
 		@piece.update_attributes(piece_params)
-    redirect_to game_path(@piece.game)
+    	redirect_to game_path(@piece.game)
 	end
 
 	def edit
