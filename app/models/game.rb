@@ -1,4 +1,7 @@
 class Game < ApplicationRecord
+
+  has_many :users
+
   scope :available, -> { where("white_player_id IS NULL OR black_player_id IS NULL")}
   has_many :pieces
   has_many :users
@@ -37,5 +40,4 @@ class Game < ApplicationRecord
 
     game
   end
-
 end

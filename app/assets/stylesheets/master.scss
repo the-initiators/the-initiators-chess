@@ -25,6 +25,26 @@ table {
   background: #9f9f9f;
 }
 
+
+#chessboard tr:nth-child(2n+1) td:nth-child(2n) { 
+  background: #9f9f9f; 
+} 
+
+
+
+.list-item {
+  border: 1px solid #000000;
+  text-align: center;
+  background-color: #9f9f9f;
+  margin-top: 20px;
+}
+
+ul{
+  list-style-type: none;
+}
+
+
 .chessboard tr:nth-child(2n+1) td:nth-child(2n) {
   background: #9f9f9f;
 }
+

@@ -1,3 +1,49 @@
-<h1>Hello World</h1>
+<header class="row">
+<div class="col-10 offset-1">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">The Initiators</a>
+      <% if user_signed_in? %>
+        <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+       
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+</header>
+
+<div class="row">
+<div class="col-10 offset-1">
+<h1>Welcome</h1>
+</div>
+</div>
 
 <%= link_to "Create a new game", new_game_path %>
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+
+
+<div class="list-item">
+<% if @game.present? %>
+<%= render 'open_games' %>
+</div>
+<% end %>
+
+
+
+
